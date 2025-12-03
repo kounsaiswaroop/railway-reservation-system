@@ -1,42 +1,158 @@
-# Railway Reservation System
+# Railway Reservation System (Python + MySQL)
 
-## Project Overview
-This Railway Reservation System is a Python and MySQL based application that allows users to book, check, and cancel train tickets efficiently from home. It features user account management and a simple command-line interface.
+A command-line Railway Reservation System built in Python with a MySQL backend.  
+It allows users to register, log in, view trains, book tickets, cancel bookings, and view all bookings using a persistent database.
+
+> This project was created as a Class XII CBSE Computer Science (083) practical project.
+
+---
 
 ## Features
-- User sign up, sign in, and account deletion.
-- Book tickets by entering passenger and travel details.
-- Check ticket status using phone number.
-- Cancel booked tickets.
-- Stores data securely using MySQL database.
 
-## Installation
-1. Install Python 3.x on your system.
-2. Install MySQL server and create a database named `railway`.
-3. Install the Python MySQL connector:
-```pip install mysql-connector-python```
-4. Run the SQL commands to create required tables (provided in source code).
-5. Place the Python source code files in a preferred directory.
+- User registration and login with credentials stored in MySQL
+- View list of trains with route, fare, and available seats
+- Book ticket for a selected train
+- Cancel an existing booking by phone number
+- View all bookings (with booking date and journey details)
+- Automatic database and table creation on first run
+- Sample train data inserted automatically
 
-## Usage
-- Run the main Python script.
-- Use the on-screen menu to sign in or sign up.
-- Book, check, or cancel tickets as needed.
-- Manage user account details through the menu options.
+---
+
+## Project Structure
+
+This project is intentionally kept simple for Class XII CBSE practicals and uses a **single Python file**:
+
+- **`rrs.py`** – Contains:
+  - Database initialisation (creating database and tables)
+  - User authentication (register & login)
+  - Train management (view trains, sample trains insertion)
+  - Booking module (book ticket)
+  - Cancellation module (cancel ticket)
+  - View bookings module
+  - Main menu and user menu (CLI)
+
+
+---
+
+## Prerequisites
+
+- Python 3.8+ (tested with Python 3.12)
+- MySQL Server running on your machine
+- Python MySQL connector:
+ ```sudo apt install python3-mysql.connector```
+On Linux Mint / Ubuntu you should also be able to run:
+```python3 -c "import mysql.connector; print('mysql.connector OK')"```
+
+
+---
+
+## Environment Variables
+
+For safety, database credentials are **not hard-coded**.  
+Set these environment variables before running:
+
+- `DB_HOST` – MySQL host (default: `localhost`)
+- `DB_USER` – MySQL username (default: `root`)
+- `DB_PASS` – MySQL user password (default: `password`)
+- `DB_NAME` – Database name (default: `railway`)
+
+Example (Linux / macOS):
+```
+export DB_HOST=localhost
+export DB_USER=root
+export DB_PASS='your_mysql_password'
+export DB_NAME=railway
+```
+
+---
+
+## Installation & Setup
+
+1. **Clone the repository**
+
+```git clone https://github.com/<your-username>/<your-repo-name>.git```
+```cd <your-repo-name>```
+
+2. **Ensure MySQL server is running**
+
+```sudo systemctl start mysql```
+
+3. **Install connector (if not already installed)**
+
+```sudo apt update```
+```sudo apt install python3-mysql.connector```
+
+4. **Set environment variables**
+
+```export DB_HOST=localhost```
+```export DB_USER=root```
+```export DB_PASS='your_mysql_password'```
+```export DB_NAME=railway```
+
+---
+
+## Running the Application
+
+From the project directory:
+
+```python3 rrs.py```
+
+On first run the application will:
+
+- Create the `railway` database if it does not exist
+- Create tables: `user_accounts`, `trains`, `railway`
+- Insert sample train records into `trains`
+
+
+---
+
+## Usage Flow
+
+1. **Register**
+   - Choose `Register` from the main menu
+   - Enter name, username, password, phone, gender, DOB, age
+
+2. **Login**
+   - Choose `Login` from the main menu
+   - Enter registered username and password
+   - On success, the user menu is shown
+
+3. **User Menu Options**
+   - View Available Trains
+   - Book Ticket
+   - Cancel Ticket
+   - View All Bookings
+   - Logout
+
+---
 
 ## Technologies Used
-- Python 3.x
-- MySQL
-- mysql-connector-python
 
-## System Requirements
-- Operating System: Windows or Linux compatible.
-- Python 3.x installed.
-- MySQL server installed and running.
-- At least 512 MB RAM and basic processor.
+- **Language:** Python 3
+- **Database:** MySQL
+- **Connector:** `mysql-connector-python` (via `python3-mysql.connector` package)
+- **Interface:** Command-line (terminal)
 
-## Contribution
-Feel free to fork the repository and create pull requests for any improvements or bug fixes.
+---
+
+## Notes for Evaluators / Teachers
+
+- The project demonstrates:
+  - Database connectivity using Python
+  - CRUD operations (INSERT, SELECT, UPDATE, DELETE) on MySQL tables
+  - Basic input validation and menu-driven CLI
+  - Simple implementation of a reservation system with persistent storage
+- The code avoids hard‑coding sensitive credentials by using environment variables.
+
+---
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+
+This project is intended for educational purposes (Class XII CBSE Computer Science project).  
+You may fork and modify it for learning or practice.
+
+
+
+
+
