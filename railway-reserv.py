@@ -1,5 +1,5 @@
 # ================================================================
-# RAILWAY RESERVATION SYSTEM – PYTHON + MYSQL
+# RAILWAY RESERVATION SYSTEM – PYTHON + MYSQL (GITHUB VERSION)
 # ================================================================
 
 import mysql.connector
@@ -7,12 +7,12 @@ import os
 from datetime import datetime
 
 # ------------------------------------------------
-# DB CONFIG – CHANGE IF YOUR PASSWORD IS DIFFERENT
+# DB CONFIG – VALUES COME FROM ENVIRONMENT
 # ------------------------------------------------
-DB_HOST = 'localhost'
-DB_USER = 'root'
-DB_PASS = 'manager'
-DB_NAME = 'railway'
+DB_HOST = os.getenv('DB_HOST', 'localhost')
+DB_USER = os.getenv('DB_USER', 'root')        # change via environment
+DB_PASS = os.getenv('DB_PASS', 'password')    # dummy default, DO NOT use in production
+DB_NAME = os.getenv('DB_NAME', 'railway')     # can be overridden
 
 
 # ================================================================
@@ -25,7 +25,7 @@ def get_raw_connection(no_db=False):
             "host": DB_HOST,
             "user": DB_USER,
             "passwd": DB_PASS,
-            "ssl_disabled": True      # important for your setup
+            "ssl_disabled": True      # important for typical local setups
         }
         if not no_db:
             kwargs["database"] = DB_NAME
@@ -552,4 +552,3 @@ def main():
 # ================================================================
 if __name__ == "__main__":
     main()
-# ================================================================
